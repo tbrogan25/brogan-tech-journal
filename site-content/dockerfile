@@ -1,0 +1,4 @@
+# Pull the latest NGINX image
+FROM nginx:latest
+# Copy the ~/site-content/index.html file to the NGINX directory
+COPY ./index.html /usr/share/nginx/html/index.html
