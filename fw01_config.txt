@@ -71,6 +71,7 @@ set firewall name DMZ-to-WAN default-action 'drop'
 set firewall name DMZ-to-WAN enable-default-log
 set firewall name DMZ-to-WAN rule 1 action 'accept'
 set firewall name DMZ-to-WAN rule 1 state established 'enable'
+## This will need to be enabled to pull Wazuh agent files; disabled for DMZ-to-WAN drop rule
 set firewall name DMZ-to-WAN rule 999 action 'accept'
 set firewall name DMZ-to-WAN rule 999 description 'Allow web01 traffic to WAN'
 set firewall name DMZ-to-WAN rule 999 source address '172.16.50.3'
