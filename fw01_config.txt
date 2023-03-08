@@ -8,7 +8,7 @@ set interfaces ethernet eth2 description 'TIMOTHY-LAN'
 ## system
 set system host-name 'fw01-timothy'
 set system name-server '10.0.17.2'
-set system syslog host 172.16.50.5 facility authpriv level 'info'
+# set system syslog host 172.16.50.5 facility authpriv level 'info'
 ## protocols
 set protocols rip interface eth2
 set protocols rip network '172.16.50.0/29'
