@@ -1,35 +1,26 @@
 ## interface
-<pre>
 set interfaces ethernet eth0 address '10.0.17.129/24'
 set interfaces ethernet eth0 description 'SEC350-WAN'
 set interfaces ethernet eth1 address '172.16.50.2/29'
 set interfaces ethernet eth1 description 'TIMOTHY-DMZ'
 set interfaces ethernet eth2 address '172.16.150.2/24'
 set interfaces ethernet eth2 description 'TIMOTHY-LAN'
-</pre>
 ## system
-<pre>
 set system host-name 'fw01-timothy'
 set system name-server '10.0.17.2'
 set system syslog host 172.16.50.5 facility authpriv level 'info'
-</pre>
 ## protocols
-<pre>
 set protocols rip interface eth2
 set protocols rip network '172.16.50.0/29'
 set protocols static route 0.0.0.0/0 next-hop 10.0.17.2
-</pre>
 ## service
-<pre>
 set service dns forwarding allow-from '172.16.50.0/29'
 set service dns forwarding allow-from '172.16.150.0/24'
 set service dns forwarding listen-address '172.16.50.2'
 set service dns forwarding listen-address '172.16.150.2'
 set service dns forwarding system
 set service ssh listen-address '0.0.0.0'
-</pre>
 ## zone
-<pre>
 set zone-policy zone DMZ from LAN firewall name 'LAN-to-DMZ'
 set zone-policy zone DMZ from WAN firewall name 'WAN-to-DMZ'
 set zone-policy zone DMZ interface 'eth1'
@@ -39,9 +30,7 @@ set zone-policy zone LAN interface 'eth2'
 set zone-policy zone WAN from DMZ firewall name 'DMZ-to-WAN'
 set zone-policy zone WAN from LAN firewall name 'LAN-to-WAN'
 set zone-policy zone WAN interface 'eth0'
-</pre>
 ## firewall
-<pre>
 set firewall name DMZ-to-LAN default-action 'drop'
 set firewall name DMZ-to-LAN enable-default-log
 set firewall name DMZ-to-LAN rule 1 action 'accept'
