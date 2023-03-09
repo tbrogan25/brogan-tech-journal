@@ -1,19 +1,19 @@
-## interface
+#### interface
 set interfaces ethernet eth0 address '10.0.17.129/24'
 set interfaces ethernet eth0 description 'SEC350-WAN'
 set interfaces ethernet eth1 address '172.16.50.2/29'
 set interfaces ethernet eth1 description 'TIMOTHY-DMZ'
 set interfaces ethernet eth2 address '172.16.150.2/24'
 set interfaces ethernet eth2 description 'TIMOTHY-LAN'
-## system
+#### system
 set system host-name 'fw01-timothy'
 set system name-server '10.0.17.2'
 # set system syslog host 172.16.50.5 facility authpriv level 'info'
-## protocols
+#### protocols
 set protocols rip interface eth2
 set protocols rip network '172.16.50.0/29'
 set protocols static route 0.0.0.0/0 next-hop 10.0.17.2
-## service
+#### service
 set service dns forwarding allow-from '172.16.50.0/29'
 set service dns forwarding allow-from '172.16.150.0/24'
 set service dns forwarding listen-address '172.16.50.2'
@@ -21,8 +21,8 @@ set service dns forwarding listen-address '172.16.150.2'
 set service dns forwarding system
 # Change SSH from all interfaces to just LAN
 set service ssh listen-address '0.0.0.0'
-set service ssh listen-address '172.16.150.2'
-## zone
+# set service ssh listen-address '172.16.150.2'
+#### zone
 set zone-policy zone DMZ from LAN firewall name 'LAN-to-DMZ'
 set zone-policy zone DMZ from WAN firewall name 'WAN-to-DMZ'
 set zone-policy zone DMZ interface 'eth1'
@@ -51,6 +51,7 @@ set nat destination rule 10 inbound-interface 'eth0'
 set nat destination rule 10 protocol 'tcp'
 set nat destination rule 10 translation address '172.16.50.3'
 set nat destination rule 10 translation port '80'
+---- Done all nat above ----
 set nat destination rule 20 description 'SSH > jump-timothy'
 set nat destination rule 20 destination port '22'
 set nat destination rule 20 inbound-interface 'eth0'
