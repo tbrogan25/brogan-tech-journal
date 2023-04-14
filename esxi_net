@@ -1,0 +1,22 @@
+title vSphere & SysAdmin III Network Plan
+
+' Networks
+queue "Home-LAN x.x.x.0/24" as Home_LAN #pink;line:red;line.bold
+queue "Virtual-WAN x.x.x.0/24" as WAN #palegreen;line:green;line.bold
+queue "Virtual-LAN x.x.x.0/24" as LAN #gold;line:goldenrod;line.bold
+
+' Machines
+' rectangle "LOOK HERE: PUT VIRTUAL ROUTER IN PLACE OF ESXI01; MAKE ESXI A GROUP ENCOMPASSING ALL HOSTED VMS" as esxi01
+rectangle "esxi01\nESXi Host" as esxi01
+rectangle "temp fw" as fw01
+rectangle "temp vm" as vm01
+
+
+' Connections
+Home_LAN -[#red]- esxi01: ".50"
+esxi01 -[#green]- WAN: ".50"
+
+WAN -[#green]- fw01: ".1"
+fw01 -[#goldenrod]- LAN: ".1"
+
+LAN -[#goldenrod]- vm01: ".2"
